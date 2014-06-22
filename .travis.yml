@@ -9,4 +9,4 @@ before_install:
   - sudo chown $USER /var/spool/cron/crontabs/$USER
 
 script:
-  - sudo npm test
+  - sudo $(which npm) test
