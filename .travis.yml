@@ -5,4 +5,5 @@ node_js:
   - "0.11"
 
 before_install:
-  - echo "0" | EDITOR=sed crontab -e -- || true
+  - sudo touch /var/spool/cron/crontabs/$USER
+  - sudo chown $USER /var/spool/cron/crontabs/$USER
