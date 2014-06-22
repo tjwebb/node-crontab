@@ -7,3 +7,6 @@ node_js:
 before_install:
   - sudo touch /var/spool/cron/crontabs/$USER
   - sudo chown $USER /var/spool/cron/crontabs/$USER
+
+script:
+  - sudo npm test
