@@ -264,9 +264,9 @@ var canCreateJob = {
       Assert.equal(job.minute().toString(), '45');
       /**
        * Assert.equal(job.hour().toString(), '19');
+       * Assert.equal(job.dom().toString(), '17');
        * TODO dependent upon daylight savings time
        */
-      Assert.equal(job.dom().toString(), '17');
       Assert.equal(job.month().toString(), '5');
       Assert.equal(job.dow().toString(), '*');
       Assert.equal(job.command(), 'ls -l');
@@ -279,9 +279,9 @@ var canCreateJob = {
       Assert.equal(job.minute().toString(), '45');
       /**
        * Assert.equal(job.hour().toString(), '19');
+       * Assert.equal(job.dom().toString(), '17');
        * TODO dependent upon daylight savings time
        */
-      Assert.equal(job.dom().toString(), '17');
       Assert.equal(job.month().toString(), '5');
       Assert.equal(job.dow().toString(), '*');
       Assert.equal(job.command(), 'ls -l');
