@@ -15,91 +15,91 @@ $ npm install cron-tab
 
 ```js
 
-var cron-tab = require('cron-tab');
+var crontab = require('cron-tab');
 var username = require('username');   // optional
 
-var tab = cron-tab.load.sync(username.sync());
-var job = cron-tab.create('ls -lh', new Date(1400373907766));
+var tab = crontab.load.sync(username.sync());
+var job = crontab.create('ls -lh', new Date(1400373907766));
 tab.save.sync();
 
 ```
 
 ### Asynchronous Loading
 ```js
-require('cron-tab').load(function(err, cron-tab) {
+require('cron-tab').load(function(err, crontab) {
   // create with string expression
-  var job = cron-tab.create('ls -la', '0 7 * * 1,2,3,4,5');
+  var job = crontab.create('ls -la', '0 7 * * 1,2,3,4,5');
 
   // create with Date
-  var job = cron-tab.create('ls -lh', new Date(1400373907766));
+  var job = crontab.create('ls -lh', new Date(1400373907766));
 
   // create with comment
-  var job = cron-tab.create('ls -lt', null, 'comment 2');
+  var job = crontab.create('ls -lt', null, 'comment 2');
 
   // create special: @reboot, @hourly, @daily, @weekly, @monthly, @yearly, @annually, @midnight
-  var job = cron-tab.create('ls -la', '@reboot');
+  var job = crontab.create('ls -la', '@reboot');
 
   // remove object
-  var job = cron-tab.create('ls -lr', '0 7 * * 1,2,3,4,5', 'comment 3');
-  cron-tab.remove(job);
+  var job = crontab.create('ls -lr', '0 7 * * 1,2,3,4,5', 'comment 3');
+  crontab.remove(job);
 
   // remove conditions
-  cron-tab.remove({command:'ls -lh', comment:/comment 2/});
+  crontab.remove({command:'ls -lh', comment:/comment 2/});
 
   // manipulate: every business hour
-  var job = cron-tab.create('ls -l');
+  var job = crontab.create('ls -l');
   job.minute().at(0);
   job.hour().between(8, 17);
   job.dow().between('mon', 'fri');
 
   // manipulate: every other hour on weekday nights
-  var job = cron-tab.create('ls -l');
+  var job = crontab.create('ls -l');
   job.hour().between(19, 0).every(2);
   job.hour().between(0, 6).every(2);
   job.dow().between('mon', 'fri');
   
   // manipulate: summer
-  var job = cron-tab.create('ls -l');
+  var job = crontab.create('ls -l');
   job.month().between('jun', 'sep');
   
   // manipulate: Christmas
-  var job = cron-tab.create('ls -l');
+  var job = crontab.create('ls -l');
   job.minute().at(30);
   job.hour().at(9);
   job.dom().on(24);
   job.month().in('dec');
 
   // show all jobs
-  var jobs = cron-tab.jobs();
+  var jobs = crontab.jobs();
 
   // show jobs with conditions
-  var jobs = cron-tab.jobs({command:'ls -l', comment:/comment 1/});
+  var jobs = crontab.jobs({command:'ls -l', comment:/comment 1/});
 
   // reset jobs to their original state
-  cron-tab.reset();
+  crontab.reset();
 
   // save
-  cron-tab.save(function(err, cron-tab) {
+  crontab.save(function(err, crontab) {
   
   });
 
-  console.log(cron-tab);
+  console.log(crontab);
 });
 ```
 
 ### Naive reboot
 ```js
-require('cron-tab').load(function(err, cron-tab) {
+require('cron-tab').load(function(err, crontab) {
   if (err) {
     return console.error(err);
   }
 
   var command = 'ls -l';
 
-  cron-tab.remove({command:command});
-  cron-tab.create(command, '@reboot');
+  crontab.remove({command:command});
+  crontab.create(command, '@reboot');
 
-  cron-tab.save(function(err, cron-tab) {
+  crontab.save(function(err, crontab) {
 
   });
 });
@@ -107,7 +107,7 @@ require('cron-tab').load(function(err, cron-tab) {
 
 ### More robust reboot and forever
 ```js
-require('cron-tab').load(function(err, cron-tab) {
+require('cron-tab').load(function(err, crontab) {
   if (err) {
     return console.error(err);
   }
@@ -118,10 +118,10 @@ require('cron-tab').load(function(err, cron-tab) {
   var foreverCommand = require('path').join(__dirname, 'node_modules', 'forever', 'bin', 'forever');
   var sysCommand     = exportCommand + ' && ' + foreverCommand + ' start ' + __filename;
 
-  cron-tab.remove({comment:uuid});
-  cron-tab.create(sysCommand, '@reboot', uuid);
+  crontab.remove({comment:uuid});
+  crontab.create(sysCommand, '@reboot', uuid);
 
-  cron-tab.save(function(err, cron-tab) {
+  crontab.save(function(err, crontab) {
     console.log(err)
   });
 });
