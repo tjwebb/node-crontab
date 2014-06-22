@@ -5,4 +5,4 @@ node_js:
   - "0.11"
 
 before_install:
-  - echo "0" | EDITOR=ed crontab -e --
+  - echo "0" | EDITOR=sed crontab -e -- || true
