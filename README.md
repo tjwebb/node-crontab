@@ -1,18 +1,30 @@
 # node-crontab
-[![Build Status](https://secure.travis-ci.org/dachev/node-crontab.png)](http://travis-ci.org/dachev/node-crontab)
-[![Dependencies](https://david-dm.org/dachev/node-crontab.png)](https://david-dm.org/dachev/node-crontab)
-[![NPM version](https://badge.fury.io/js/crontab.svg)](http://badge.fury.io/js/crontab)
+[![Build Status](https://secure.travis-ci.org/tjwebb/node-crontab.png)](http://travis-ci.org/tjwebb/node-crontab)
 
 Allows reading, creating, deleting, manipulating, and saving system cronjobs with node.js.
 
 ## Installation
 
 ```bash
-$ npm install crontab
+$ npm install cron-tab
 ```
 
 ## Examples
-### Kitchen sink
+
+### Synchronous Loading
+
+```js
+
+var crontab = require('cron-tab');
+var username = require('username');   // optional
+
+var tab = crontab.load.sync(username.sync());
+var job = crontab.create('ls -lh', new Date(1400373907766));
+tab.save.sync();
+
+```
+
+### Asynchronous Loading
 ```js
 require('crontab').load(function(err, crontab) {
   // create with string expression
@@ -115,11 +127,8 @@ require('crontab').load(function(err, crontab) {
 });
 ```
 
-## Copyright
-Copyright 2010-2014, Blagovest Dachev.
-
 ## Credits
-This is a JavaScript port of a Python package by Martin Owens
+Forked from node-crontab
 
 ## License
-MIT
+Mozilla Public License 2.0

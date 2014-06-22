@@ -1,42 +1,41 @@
 {
-  "name": "crontab",
-  "description": "A module for reading, creating, deleting, manipulating, and saving system cronjobs with node.js",
+  "name": "cron-tab",
+  "version": "1.1.0",
+  "description": "Setup system cron jobs from node",
   "keywords": [
     "cron",
     "crontab",
+    "cronjob",
+    "job",
     "schedule",
+    "scheduler",
+    "manager",
     "system",
-    "run",
     "process"
   ],
-  "version": "1.0.1",
   "main": "./lib/index",
-  "dependencies": {
-    "underscore": "^1.6.0"
-  },
-  "devDependencies": {
-    "vows": "0.7.0"
-  },
   "scripts": {
-    "test": "test/runner.js"
+    "pretest": "test/runner.js",
+    "test": "mocha -R spec spec/"
   },
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 0.10.26"
   },
-  "author": {
-    "name": "Blagovest Dachev",
-    "email": "blago@dachev.com",
-    "url": "http://www.dachev.com"
-  },
-  "homepage": "https://github.com/dachev/node-crontab",
+  "author": "Travis Webb <me@traviswebb.com>",
+  "homepage": "https://github.com/tjwebb/node-crontab",
   "repository": {
     "type": "git",
-    "url": "git://github.com/dachev/node-crontab.git"
+    "url": "git://github.com/tjwebb/node-crontab.git"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://opensource.org/licenses/MIT"
-    }
-  ]
+  "license": "MPL-2.0",
+  "dependencies": {
+    "execSync": "^1.0.1-pre",
+    "lodash": "^2.4.1",
+    "username": "^0.1.1"
+  },
+  "devDependencies": {
+    "assert": "^1.1.1",
+    "rimraf": "^2.2.8",
+    "vows": "^0.7.0"
+  }
 }
