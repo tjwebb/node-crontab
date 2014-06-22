@@ -30,12 +30,12 @@
   "license": "MPL-2.0",
   "dependencies": {
     "execSync": "^1.0.1-pre",
-    "lodash": "^2.4.1",
-    "username": "^0.1.1"
+    "lodash": "^2.4.1"
   },
   "devDependencies": {
     "assert": "^1.1.1",
     "rimraf": "^2.2.8",
+    "username": "^0.1.1",
     "vows": "^0.7.0"
   }
 }
