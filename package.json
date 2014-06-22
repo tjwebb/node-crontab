@@ -16,7 +16,7 @@
   "main": "./lib/index",
   "scripts": {
     "pretest": "test/runner.js",
-    "test": "mocha -R spec spec/"
+    "test": "mocha -R spec spec/ -b"
   },
   "engines": {
     "node": ">= 0.10.26"

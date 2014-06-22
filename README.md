@@ -19,7 +19,7 @@ var crontab = require('cron-tab');
 var username = require('username');   // optional
 
 var tab = crontab.load.sync(username.sync());
-var job = crontab.create('echo "hello world" > demo.txt', new Date(Date.now() + 60000));
+var job = tab.create('echo "hello world" > /tmp/demo.txt', new Date(Date.now() + 60000));
 tab.save.sync();
 // "hello world" will be saved to demo.txt in 1 minute
 
