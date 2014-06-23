@@ -1,4 +1,4 @@
-var Crontab = require('../lib/index'),
+var crontab = require('../lib/index'),
   assert = require('assert'),
   username = require('username'),
   fs = require('fs'),
@@ -8,17 +8,17 @@ var Crontab = require('../lib/index'),
 describe('cron-tab', function () {
 
   after(function () {
-    var tab = Crontab.load.sync(username.sync());
+    var tab = crontab.load.sync(username.sync());
     tab.remove({ comment: 'mochatest' });
     tab.save.sync();
   });
 
   describe('#load.sync', function () {
     it('should load current user\'s crontab without error', function () {
-      Crontab.load.sync(username.sync());
+      crontab.load.sync(username.sync());
     });
     it('should clear existing crontab', function () {
-      var tab = Crontab.load.sync(username.sync());
+      var tab = crontab.load.sync(username.sync());
       tab.remove({ comment: 'mochatest' });
       tab.save.sync();
       assert(!/^\d/.test(tab.render()));
@@ -26,9 +26,29 @@ describe('cron-tab', function () {
   });
 
   describe('#create', function () {
+    it('[1 min] should run README example', function (done) {
+      this.timeout(120 * 1000);
+
+      var tab = crontab.load.sync(username.sync());
+      var job = tab.create('echo "hello world" > /tmp/demo.txt', new Date(Date.now() + 60000));
+      tab.save.sync();
+
+      var i = setInterval(function () {
+        var exists = fs.existsSync('/tmp/demo.txt');
+        if (!exists) return;
+
+        var results = fs.readFileSync('/tmp/demo.txt');
+        if (/hello world/.test(results.toString())) {
+          clearInterval(i);
+          fs.unlinkSync('/tmp/demo.txt');
+          done();
+        }
+      }, 100);
+    });
     it('[1 min] should schedule job using Date object', function (done) {
       this.timeout(120 * 1000);
-      var tab = Crontab.load.sync(username.sync());
+
+      var tab = crontab.load.sync(username.sync());
       var now = new Date().valueOf();
       var filename = '/tmp/cronmocha-'+ now;
       var echo = 'echo "'+ (now + 60000) +'" | sudo tee -a '+ filename;
