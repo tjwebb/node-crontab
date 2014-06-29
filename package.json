@@ -29,7 +29,6 @@
   },
   "license": "MPL-2.0",
   "dependencies": {
-    "execSync": "^1.0.1-pre",
     "lodash": "^2.4.1",
     "sync-exec": "^0.3.2"
   },
