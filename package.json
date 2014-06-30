@@ -18,9 +18,6 @@
     "pretest": "test/runner.js",
     "test": "mocha -R spec spec/ -b"
   },
-  "engines": {
-    "node": ">= 0.10.26"
-  },
   "author": "Travis Webb <me@traviswebb.com>",
   "homepage": "https://github.com/tjwebb/node-crontab",
   "repository": {
