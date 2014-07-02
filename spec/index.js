@@ -68,7 +68,5 @@ describe('cron-tab', function () {
         }
       }, 100);
     });
-
   });
-
 });

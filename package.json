@@ -15,7 +15,6 @@
   ],
   "main": "./lib/index",
   "scripts": {
-    "pretest": "test/runner.js",
     "test": "mocha -R spec spec/ -b"
   },
   "author": "Travis Webb <me@traviswebb.com>",
