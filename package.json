@@ -1,6 +1,6 @@
 {
   "name": "cron-tab",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "description": "Setup system cron jobs from node",
   "keywords": [
     "cron",
