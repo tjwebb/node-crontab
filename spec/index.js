@@ -1,5 +1,4 @@
 var crontab = require('../lib/index'),
-  assert = require('assert'),
   username = require('username'),
   fs = require('fs'),
   _ = require('lodash'),
